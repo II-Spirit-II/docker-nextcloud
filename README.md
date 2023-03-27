@@ -19,15 +19,15 @@ mkdir ssl
 Here are the commands to create a self-signed SSL certificate using OpenSSL:
 - Create a private key:
 
-`openssl genrsa -out server.key 2048`
+```openssl genrsa -out server.key 2048```
 
 - Create a Certificate Signing Request (CSR):
 
-`openssl req -new -key server.key -out server.csr`
+```openssl req -new -key server.key -out server.csr```
 
 - Self-sign the certificate using the private key and CSR:
 
-`openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt`
+```openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt```
 
 Note that these self-signed certificates are not considered secure for production use and are intended for testing or development purposes only. For production use, it is recommended to purchase an SSL certificate from a trusted certification authority.
 
@@ -42,6 +42,7 @@ Normally, once `server.crt` and `server.key` are created in your directory named
 The following services are defined in the docker-compose.yml file:
 
 - **nextcloud**: Nextcloud server container with the following environment variables:
+```
     - MYSQL_HOST: hostname of the MariaDB container
     - MYSQL_DATABASE: database name for Nextcloud
     - MYSQL_USER: database username for Nextcloud
@@ -49,21 +50,26 @@ The following services are defined in the docker-compose.yml file:
     - OVERWRITEPROTOCOL: set to "https" to enable HTTPS
     - Volumes:
       - /root/docker_compose/nextcloud:/var/www/html
+```
 
 - **mariadb**: MariaDB database container with the following environment variables:
+```
     - MYSQL_ROOT_PASSWORD: root password for MariaDB
     - MYSQL_DATABASE: database name for Nextcloud
     - MYSQL_USER: database username for Nextcloud
     - MYSQL_PASSWORD: database password for Nextcloud
     - Volumes:
       - /root/docker_compose/mariadb:/var/lib/mysql
+```
 
 - **nginx**: Nginx reverse proxy container with the following features:
+```
     - HTTPS configuration
     - SSL certificate and key configured via the ssl directory
     - Proxy pass to the Nextcloud container
     - Volumes:
       - /root/docker_compose/nginx.conf:/etc/nginx/nginx.conf
+```
 
 ## Nginx Configuration
 The nginx.conf file defines the Nginx configuration for the reverse proxy. It includes the following features:

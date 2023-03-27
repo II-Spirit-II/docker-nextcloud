@@ -11,10 +11,10 @@ This repository contains a docker-compose file and an nginx configuration file t
 2. Navigate to the repository directory: `cd /path/to/directory`
 3. Create a directory named "ssl" (it's very important to respect this name) in the repository directory and add your SSL certificate and key to it:
 
-`
+```
 cd /path/to/git
 mkdir ssl
-`
+```
 
 Here are the commands to create a self-signed SSL certificate using OpenSSL:
 - Create a private key:

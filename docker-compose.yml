@@ -1,0 +1,49 @@
+version: "3"
+
+services:
+  nextcloud:
+    image: nextcloud
+    restart: always
+    environment:
+      - MYSQL_HOST=mariadb
+      - MYSQL_DATABASE=nextcloud
+      - MYSQL_USER=nextcloud
+      - MYSQL_PASSWORD=password
+      - OVERWRITEPROTOCOL=https
+    volumes:
+      - /root/docker_compose/nextcloud:/var/www/html
+    depends_on:
+      - mariadb
+    networks:
+      - nextcloud_network
+
+  mariadb:
+    image: mariadb
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=nextcloud
+      - MYSQL_USER=nextcloud
+      - MYSQL_PASSWORD=password
+    volumes:
+      - /root/docker_compose/mariadb:/var/lib/mysql
+    networks:
+      - nextcloud_network
+
+  nginx:
+    image: nginx
+    restart: always
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - /root/docker_compose/nginx.conf:/etc/nginx/nginx.conf
+      - /root/docker_compose/ssl:/etc/nginx/ssl
+    depends_on:
+      - nextcloud
+    networks:
+      - nextcloud_network
+
+networks:
+  nextcloud_network:
+

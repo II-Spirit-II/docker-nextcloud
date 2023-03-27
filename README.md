@@ -7,9 +7,22 @@ This repository contains a docker-compose file and an nginx configuration file t
 - Docker Compose installed
 
 ## Getting Started
-1. Clone this repository: `git clone https://github.com/II-Spirit-II/docker-nextcloud`
-2. Navigate to the repository directory.
+1. Clone this repository: `git clone https://github.com/II-Spirit-II/docker-nextcloud.git`
+2. Navigate to the repository directory: `cd /path/to/directory`
 3. Create a directory named "ssl" in the repository directory and add your SSL certificate and key to it.
+
+Here are the commands to create a self-signed SSL certificate using OpenSSL:
+- Create a private key:
+`openssl genrsa -out server.key 2048`
+
+- Create a Certificate Signing Request (CSR):
+`openssl req -new -key server.key -out server.csr`
+
+Self-sign the certificate using the private key and CSR:
+`openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt`
+
+Note that these self-signed certificates are not considered secure for production use and are intended for testing or development purposes only. For production use, it is recommended to purchase an SSL certificate from a trusted certification authority.
+
 4. Edit the docker-compose.yml file to customize your configuration.
 5. Run the following command to start the containers: `docker compose up -d`
 

@@ -7,12 +7,11 @@ This repository contains a docker-compose file and an nginx configuration file t
 - Docker Compose installed
 
 ## Getting Started
-1. Clone this repository.
+1. Clone this repository: `git clone https://github.com/II-Spirit-II/docker-nextcloud`
 2. Navigate to the repository directory.
 3. Create a directory named "ssl" in the repository directory and add your SSL certificate and key to it.
 4. Edit the docker-compose.yml file to customize your configuration.
-5. Run the following command to start the containers:
-`docker compose up -d`
+5. Run the following command to start the containers: `docker compose up -d`
 
 ## Configuration
 The following services are defined in the docker-compose.yml file:

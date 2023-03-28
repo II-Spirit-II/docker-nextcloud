@@ -4,12 +4,8 @@ services:
   nextcloud:
     image: nextcloud
     restart: always
-    environment:
-      - MYSQL_HOST=mariadb
-      - MYSQL_DATABASE=nextcloud
-      - MYSQL_USER=nextcloud
-      - MYSQL_PASSWORD=password
-      - OVERWRITEPROTOCOL=https
+    env_file:
+      - ./nextcloud.env
     volumes:
       - /root/docker_compose/nextcloud:/var/www/html
     depends_on:
@@ -20,11 +16,8 @@ services:
   mariadb:
     image: mariadb
     restart: always
-    environment:
-      - MYSQL_ROOT_PASSWORD=password
-      - MYSQL_DATABASE=nextcloud
-      - MYSQL_USER=nextcloud
-      - MYSQL_PASSWORD=password
+    env_file:
+      - ./db.env
     volumes:
       - /root/docker_compose/mariadb:/var/lib/mysql
     networks:

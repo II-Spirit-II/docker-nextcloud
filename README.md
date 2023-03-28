@@ -33,6 +33,7 @@ Note that these self-signed certificates are not considered secure for productio
 
 4. Edit the docker-compose.yml file to customize your configuration.
 5. Run the following command to start the containers: `docker compose up -d`
+6. Go to the nextcloud web page at `https://your-ip`
 
 ## Recommendations:
 

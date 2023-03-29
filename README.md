@@ -7,8 +7,8 @@ This repository contains a docker-compose file and an nginx configuration file t
 - Docker Compose installed 🐙
 
 ## Getting Started 🚀
-1. Clone this repository: `git clone https://github.com/II-Spirit-II/docker-nextcloud.git` and put it in `/root/` (this is very important because the volumes in `docker-compose.yml` are set in this directory for now 📥
-2. Navigate to the repository directory: `cd /root/docker-nextcloud` 🚶‍♂️
+1. Clone this repository: `git clone https://github.com/II-Spirit-II/docker-nextcloud.git` and put it in `/root/` (this is very important because the volumes in `docker-compose.yml` are set in this directory for now 
+2. Navigate to the repository directory: `cd /root/docker-nextcloud` 
 3. Create a directory named "ssl" (it's very important to respect this name) in the repository directory and add your SSL certificate and key to it: 🔑
 
 If you don't have a domain name or you want just set it up in local. Run the sslkeygen.sh script which will create a self-signed ssl certificate and key automatically with your information. it will also create the ```ssl``` folder if it is not yet created: 🛡️
@@ -55,25 +55,13 @@ The following services are defined in the docker-compose.yml file:
   - /root/docker_compose/mariadb:/var/lib/mysql
 ```
 
-- **nginx**: Nginx reverse proxy container with the following features:
-
-```
-- HTTPS configuration 🔐
-- SSL certificate and key configured via the ssl directory 🔑
-- Proxy pass to the Nextcloud container 🔜
-- Volumes:
-  - /root/docker_compose/nginx.conf:/etc/nginx/nginx.conf
-```
-
 ## Nginx Configuration 🔧
 The nginx.conf file defines the Nginx configuration for the reverse proxy. It includes the following features:
 
-```
 - HTTP to HTTPS redirect 🌐
 - HTTPS configuration with SSL certificate and key 🔐
 - Proxy pass to the Nextcloud container 🔜
 - Security headers
-```
 
 ## Conclusion 🎉
 This docker-compose file and nginx configuration can be used to quickly set up a Nextcloud server with HTTPS enabled. 🚀

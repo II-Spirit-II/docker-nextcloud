@@ -47,7 +47,7 @@ docker compose up -d
 
 Normally, once `server.crt` and `server.key` are created in your directory named SSL, everything should work when launching with `docker compose up -d`. However, it is strongly recommended to modify the database and Nextcloud environment in the env files by changing the password, user etc...:
 
-- `db.env` => Mariadb environment
+- `db.env` => MariaDB environment
 - `nextcloud.env` => Nextcloud environment
 
 The following services are defined in the env files:

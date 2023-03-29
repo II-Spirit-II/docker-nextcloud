@@ -25,5 +25,5 @@ openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt
 openssl x509 -in server.crt -text -noout
 
 # Afficher un message de fin en vert
-echo -e "\e[32mToutes les générations ont été exécuter avec succès !\e[0m"
+echo -e "\e[32mToutes les générations ont été exécutées avec succès !\e[0m"
 

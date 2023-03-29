@@ -34,7 +34,12 @@ cd /root/docker-nextcloud
 Note that these self-signed certificates are not considered secure for production use and are intended for testing or development purposes only. For production use, it is recommended to purchase an SSL certificate from a trusted certification authority.
 
 4. Edit the docker-compose.yml file to customize your configuration. 🛠️
-5. Run the following command to start the containers: `docker compose up -d` 🏃‍♂️
+5. Run the following command to start the containers: 
+
+```
+docker compose up -d
+```
+
 6. Go to the nextcloud web page at `https://your-ip` 🌐
 
 ## Recommendations: 🔍

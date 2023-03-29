@@ -33,7 +33,6 @@ cd /root/docker-nextcloud
 
 Note that these self-signed certificates are not considered secure for production use and are intended for testing or development purposes only. For production use, it is recommended to purchase an SSL certificate from a trusted certification authority.
 
-4. Edit the docker-compose.yml file to customize your configuration. 🛠️
 5. Run the following command to start the containers: 
 
 ```
@@ -42,12 +41,16 @@ docker compose up -d
 
 6. Go to the nextcloud web page at `https://your-ip` 🌐
 
-## Recommendations: 🔍
-
-Normally, once `server.crt` and `server.key` are created in your directory named SSL, everything should work when launching with `docker compose up -d`. However, it is strongly recommended to modify the database environment in the docker-compose file by changing the password for example etc...
-
 ## Configuration 🔧
-The following services are defined in the docker-compose.yml file:
+
+### Recommendations: 🔍
+
+Normally, once `server.crt` and `server.key` are created in your directory named SSL, everything should work when launching with `docker compose up -d`. However, it is strongly recommended to modify the database and Nextcloud environment in the env files for file by changing the password, user etc...:
+
+- `db.env` => database environment
+- `nextcloud.env` => Nextcloud environment
+
+The following services are defined in the env files:
 
 - **nextcloud**: Nextcloud server container with the following environment variables:
 
@@ -73,6 +76,7 @@ The following services are defined in the docker-compose.yml file:
 ```
 
 ## Nginx Configuration 🔧
+
 The nginx.conf file defines the Nginx configuration for the reverse proxy. It includes the following features:
 
 - HTTP to HTTPS redirect 🌐

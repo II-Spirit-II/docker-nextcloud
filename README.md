@@ -45,7 +45,7 @@ docker compose up -d
 
 ### Recommendations: 🔍
 
-Normally, once `server.crt` and `server.key` are created in your directory named SSL, everything should work when launching with `docker compose up -d`. However, it is strongly recommended to modify the database and Nextcloud environment in the env files for file by changing the password, user etc...:
+Normally, once `server.crt` and `server.key` are created in your directory named SSL, everything should work when launching with `docker compose up -d`. However, it is strongly recommended to modify the database and Nextcloud environment in the env files by changing the password, user etc...:
 
 - `db.env` => database environment
 - `nextcloud.env` => Nextcloud environment

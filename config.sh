@@ -56,6 +56,7 @@ while true; do
       ;;
     3)
       # Créer les secrets Docker
+      echo "root_password" | docker secret create root_password -
       echo "password" | docker secret create db_password -
       echo "nextcloud_db" | docker secret create db_name -
       echo "nextcloud_user" | docker secret create db_user -
@@ -70,8 +71,8 @@ while true; do
       docker secret rm db_password db_name db_user 2> /dev/null
       docker swarm leave --force.
       rm -rf /var/lib/docker/swarm
+      rm -rf /var/lib/docker/volumes/*
       docker network prune
-      systemctl restart docker
 
       # Afficher un message de fin en vert
       echo -e "\e[32mTout a été supprimé avec succès !\e[0m"

@@ -9,9 +9,7 @@ while true; do
   # Afficher le menu
   echo -e "\e[33mQue voulez-vous faire ?\n\e[0m"
   echo -e "\e[34m1. Générer un certificat SSL autosigné"
-  echo -e "2. Initialiser un cluster Swarm"
-  echo -e "3. Créer les secrets Docker"
-  echo -e "4. Supprimer tout pour recommencer du début\e[0m"
+  echo -e "3. Supprimer tout pour recommencer du début\e[0m"
   echo -e "\e[31m\nQ. Quitter\n\e[0m"
 
   # Lire le choix de l'utilisateur
@@ -44,32 +42,6 @@ while true; do
       echo -e "\e[32mToutes les générations ont été exécutées avec succès !\e[0m"
       ;;
     2)
-      # Montrer à l'utilisateur ses interfaces
-      ip -c -br a
-
-      # Demander à l'utilisateur de saisir l'adresse IP du nœud de gestionnaire de Swarm
-      read -p $'\e[33mVeuillez saisir l adresse IP du nœud de gestionnaire de Swarm : \e[0m' SWARM_MANAGER_IP
- 
-      # Initialiser le cluster Swarm avec l'adresse IP spécifiée
-      docker swarm init --advertise-addr $SWARM_MANAGER_IP
-
-      # Afficher les informations sur le cluster Swarm
-      docker node ls
-
-      # Afficher un message de fin en vert
-      echo -e "\e[32mInitialisation du cluster Swarm réussie !\e[0m"
-      ;;
-    3)
-      # Créer les secrets Docker
-      echo "root_password" | docker secret create root_password -
-      echo "password" | docker secret create db_password -
-      echo "nextcloud_db" | docker secret create db_name -
-      echo "nextcloud_user" | docker secret create db_user -
-
-      # Afficher un message de fin en vert
-      echo -e "\e[32mTous les secrets Docker ont été créés avec succès !\e[0m"
-      ;;
-    4)
       # Supprimer tout pour recommencer du début
       rm -rf ssl
       docker stack rm nextcloud_stack

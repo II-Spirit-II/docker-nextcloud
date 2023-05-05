@@ -21,15 +21,18 @@ Put it in `/root/` (this is very important because the volumes in `docker-compos
 cd /root/docker-nextcloud
 ``` 
 
+![image](https://user-images.githubusercontent.com/61940136/236405881-34e49fd4-99cb-4efe-a6b0-5fe1baf66a12.png)
+
+
 3. Create a directory named `ssl` (it's very important to respect this name) in the repository directory and add your SSL certificate and key to it: 🔑
 
-If you don't have a domain name or you want just set it up in local. Run the sslkeygen.sh script which will create a self-signed ssl certificate and key automatically with your information. it will also create the ```ssl``` folder if it is not yet created: 🛡️
+If you don't have a domain name or you want just set it up in local. Run the ```config.sh``` script which will create a self-signed ssl certificate and key automatically with your information. it will also create the ```ssl``` folder if it is not yet created: 🛡️
 
 ```
 cd /root/docker-nextcloud
-./sslkeygen.sh
+./config.sh
 ```
-
+![image](https://user-images.githubusercontent.com/61940136/236406306-1fbb32e0-a3c1-4d2f-bac0-7df26a8b9994.png)
 
 Note that these self-signed certificates are not considered secure for production use and are intended for testing or development purposes only. For production use, it is recommended to purchase an SSL certificate from a trusted certification authority.
 
@@ -38,6 +41,8 @@ Note that these self-signed certificates are not considered secure for productio
 ```
 docker compose up -d
 ```
+
+![image](https://user-images.githubusercontent.com/61940136/236406644-6b363304-a6e6-4334-ab17-58fc03bc8fdb.png)
 
 6. Go to the nextcloud web page at `https://your-ip` 🌐
 

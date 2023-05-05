@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [ $EUID -ne 0 ]; then
+  echo -e "\e[31mVous devez être root pour exécuter ce script.\e[0m"
+  exit 1
+fi
+
 while true; do
   # Afficher le menu
   echo -e "\e[33mQue voulez-vous faire ?\n\e[0m"

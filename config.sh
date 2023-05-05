@@ -44,10 +44,6 @@ while true; do
     2)
       # Supprimer tout pour recommencer du début
       rm -rf ssl
-      docker stack rm nextcloud_stack
-      docker secret rm db_password db_name db_user 2> /dev/null
-      docker swarm leave --force.
-      rm -rf /var/lib/docker/swarm
       rm -rf /var/lib/docker/volumes/*
       docker network prune
 

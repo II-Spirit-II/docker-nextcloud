@@ -56,7 +56,7 @@ while true; do
       ;;
     *)
       # Afficher un message d'erreur en rouge si le choix est invalide
-      echo -e "\e[31mChoix invalide ! Veuillez choisir entre 1 et 4.\e[0m"
+      echo -e "\e[31mChoix invalide !\e[0m"
       ;;
   esac
 

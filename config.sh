@@ -9,6 +9,7 @@ while true; do
   # Afficher le menu
   echo -e "\e[33mQue voulez-vous faire ?\n\e[0m"
   echo -e "\e[34m1. Générer un certificat SSL autosigné"
+  echo -e "2. Lancer le processus de login pour nextcloud-exporter"
   echo -e "3. Supprimer tout pour recommencer du début\e[0m"
   echo -e "\e[31m\nQ. Quitter\n\e[0m"
 
@@ -42,6 +43,18 @@ while true; do
       echo -e "\e[32mToutes les générations ont été exécutées avec succès !\e[0m"
       ;;
     2)
+      # Vérifier si Docker Compose est en cours d'exécution
+      if [ "$(docker ps -q -f name=nextcloud)" ]; then
+        # Demander l'adresse IP du serveur à l'utilisateur
+        read -p $'\e[33mVeuillez entrer l\'adresse IP de votre serveur Nextcloud : \e[0m' NEXTCLOUD_IP
+
+        # Lancer le processus de login pour nextcloud-exporter
+        docker run --rm xperimental/nextcloud-exporter --login --server https://${NEXTCLOUD_IP}
+      else
+        echo -e "\e[31mLe service Docker Compose n'est pas en cours d'exécution. Veuillez le démarrer avant de continuer.\e[0m"
+      fi
+      ;;
+    3)
       # Supprimer tout pour recommencer du début
       rm -rf ssl
       rm -rf /var/lib/docker/volumes/*

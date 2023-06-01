@@ -10,8 +10,6 @@ services:
       - ./nextcloud:/var/www/html
     depends_on:
       - mariadb
-    networks:
-      - nextcloud_network
 
   mariadb:
     image: mariadb
@@ -20,8 +18,6 @@ services:
       - ./db.env
     volumes:
       - ./mariadb:/var/lib/mysql
-    networks:
-      - nextcloud_network
 
   nginx:
     image: nginx
@@ -34,9 +30,37 @@ services:
       - ./ssl:/etc/nginx/ssl
     depends_on:
       - nextcloud
-    networks:
-      - nextcloud_network
 
-networks:
-  nextcloud_network:
+  prometheus:
+    image: prom/prometheus
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    ports:
+      - 9090:9090
+
+  grafana:
+    image: grafana/grafana
+    ports:
+      - 3000:3000
+    volumes:
+      - grafana_data:/var/lib/grafana
+    depends_on:
+      - prometheus
+
+  nextcloud-exporter:
+    image: xperimental/nextcloud-exporter:latest
+    environment:
+      - NEXTCLOUD_SERVER=https://nextcloudflow.local # Remplacez par l'URL ou l'adresse IP de votre serveur Nextcloud.
+      - NEXTCLOUD_USERNAME=retr0
+      - NEXTCLOUD_PASSWORD=t271SF121@N # Remplacez par le mot de passe réel.
+      - NEXTCLOUD_TLS_SKIP_VERIFY=true
+    ports:
+      - 9205:9205
+    depends_on:
+      - nextcloud
+
+volumes:
+  grafana_data:
 

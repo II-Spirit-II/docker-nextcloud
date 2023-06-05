@@ -46,7 +46,7 @@ while true; do
       # Demander les informations d'environnement à l'utilisateur
       read -p $'\e[33mVeuillez entrer l\'URL de votre serveur Nextcloud (ex: https://nextcloud.example.com) : \e[0m' NEXTCLOUD_SERVER
       read -p $'\e[33mVeuillez entrer votre nom d\'utilisateur Nextcloud : \e[0m' NEXTCLOUD_USERNAME
-      read -p $'\e[33mVeuillez entrer votre mot de passe Nextcloud : \e[0m' NEXTCLOUD_PASSWORD
+      read -sp $'\e[33mVeuillez entrer votre mot de passe Nextcloud : \e[0m' NEXTCLOUD_PASSWORD
 
       # Enregistrer ces informations dans le fichier d'environnement
       echo "NEXTCLOUD_SERVER=$NEXTCLOUD_SERVER" > nextcloud-exporter.env

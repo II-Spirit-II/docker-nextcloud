@@ -64,6 +64,13 @@ services:
     depends_on:
       - nextcloud
 
+  cron:
+    build:
+      context: .
+      dockerfile: Dockerfile.cron
+    volumes:
+      - ./docker-nextcloud:/root/docker-nextcloud
+
 volumes:
   grafana_data:
 

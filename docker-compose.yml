@@ -54,11 +54,8 @@ services:
 
   nextcloud-exporter:
     image: xperimental/nextcloud-exporter:latest
-    environment:
-      - NEXTCLOUD_SERVER=https://nextcloudflow.local # Remplacez par l'URL ou l'adresse IP de votre serveur Nextcloud.
-      - NEXTCLOUD_USERNAME=retr0
-      - NEXTCLOUD_PASSWORD=t271SF121@N # Remplacez par le mot de passe réel.
-      - NEXTCLOUD_TLS_SKIP_VERIFY=true
+    env_file:
+      - ./nextcloud-exporter.env
     ports:
       - 9205:9205
     depends_on:

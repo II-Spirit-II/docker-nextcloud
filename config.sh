@@ -9,7 +9,7 @@ while true; do
   # Afficher le menu
   echo -e "\e[33mQue voulez-vous faire ?\n\e[0m"
   echo -e "\e[34m1. Générer un certificat SSL autosigné"
-  echo -e "2. Lancer le processus de login pour nextcloud-exporter"
+  echo -e "2. Initialiser l'environement"
   echo -e "3. Supprimer tout pour recommencer du début\e[0m"
   echo -e "\e[31m\nQ. Quitter\n\e[0m"
 
@@ -43,16 +43,18 @@ while true; do
       echo -e "\e[32mToutes les générations ont été exécutées avec succès !\e[0m"
       ;;
     2)
-      # Vérifier si Docker Compose est en cours d'exécution
-      if [ "$(docker ps -q -f name=nextcloud)" ]; then
-        # Demander l'adresse IP du serveur à l'utilisateur
-        read -p $'\e[33mVeuillez entrer l\'adresse IP de votre serveur Nextcloud : \e[0m' NEXTCLOUD_IP
+      # Demander les informations d'environnement à l'utilisateur
+      read -p $'\e[33mVeuillez entrer l\'URL de votre serveur Nextcloud (ex: https://nextcloud.example.com) : \e[0m' NEXTCLOUD_SERVER
+      read -p $'\e[33mVeuillez entrer votre nom d\'utilisateur Nextcloud : \e[0m' NEXTCLOUD_USERNAME
+      read -p $'\e[33mVeuillez entrer votre mot de passe Nextcloud : \e[0m' NEXTCLOUD_PASSWORD
 
-        # Lancer le processus de login pour nextcloud-exporter
-        docker run --rm xperimental/nextcloud-exporter --login --server https://${NEXTCLOUD_IP}
-      else
-        echo -e "\e[31mLe service Docker Compose n'est pas en cours d'exécution. Veuillez le démarrer avant de continuer.\e[0m"
-      fi
+      # Enregistrer ces informations dans le fichier d'environnement
+      echo "NEXTCLOUD_SERVER=$NEXTCLOUD_SERVER" > nextcloud-exporter.env
+      echo "NEXTCLOUD_USERNAME=$NEXTCLOUD_USERNAME" >> nextcloud-exporter.env
+      echo "NEXTCLOUD_PASSWORD=$NEXTCLOUD_PASSWORD" >> nextcloud-exporter.env
+      echo "NEXTCLOUD_TLS_SKIP_VERIFY=true" >> nextcloud-exporter.env
+
+      echo -e "\e[32mLes informations d'environnement ont été enregistrées avec succès !\e[0m"
       ;;
     3)
       # Supprimer tout pour recommencer du début

@@ -10,6 +10,7 @@ while true; do
   echo -e "\e[33mQue voulez-vous faire ?\n\e[0m"
   echo -e "\e[34m1. Générer un certificat SSL autosigné"
   echo -e "2. Initialiser l'environement"
+  echo -e "4. Initialiser le système de sauvegarde automatique\n"
   echo -e "3. Supprimer tout pour recommencer du début\e[0m"
   echo -e "\e[31m\nQ. Quitter\n\e[0m"
 
@@ -64,6 +65,28 @@ while true; do
 
       # Afficher un message de fin en vert
       echo -e "\e[32mTout a été supprimé avec succès !\e[0m"
+      ;;
+   4)
+      # Installer cron si ce n'est pas déjà fait
+      apt install cron -y
+
+      # Demander les informations de sauvegarde à l'utilisateur
+      read -p $'\e[33mVeuillez entrer le chemin du répertoire que vous voulez sauvegarder : \e[0m' BACKUP_DIR
+      read -p $'\e[33mVeuillez entrer l\'endroit où vous voulez que le script de sauvegarde soit créé : \e[0m' BACKUP_SCRIPT
+      read -p $'\e[33mVeuillez entrer le nom d\'utilisateur distant : \e[0m' REMOTE_USER
+      read -p $'\e[33mVeuillez entrer l\'IP de l\'hôte distant : \e[0m' REMOTE_HOST
+      read -p $'\e[33mVeuillez entrer le répertoire distant où vous voulez que les sauvegardes soient stockées : \e[0m' REMOTE_DIR
+
+      # Créer le script de sauvegarde
+      echo -e "#!/bin/bash\n\nrsync -avz --backup --backup-dir=data-backup  $BACKUP_DIR $REMOTE_USER@$REMOTE_HOST:$REMOTE_DIR" > $BACKUP_SCRIPT
+
+      # Rendre le script exécutable
+      chmod +x $BACKUP_SCRIPT
+
+      # Ajouter une entrée dans le fichier crontab pour exécuter le script de sauvegarde toutes les heures
+      (crontab -l ; echo "00 * * * * $BACKUP_SCRIPT") | crontab -
+
+      echo -e "\e[32mLe système de sauvegarde automatique a été initialisé avec succès !\e[0m"
       ;;
     q|Q)
       echo -e "\e[31mBye !\e[0m"

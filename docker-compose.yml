@@ -61,6 +61,14 @@ services:
     depends_on:
       - nextcloud
 
+  clamav:
+    image: clamav/clamav
+    restart: always
+    depends_on:
+      - nextcloud
+    ports:
+      - 3500:3500
+
 volumes:
   grafana_data:
 

@@ -1,4 +1,7 @@
 mariadb/
 nextcloud/
 ssl/
-
+backup_incre.sh
+backup_syncro.sh
+restauration.sh
+dockerfile_restauration

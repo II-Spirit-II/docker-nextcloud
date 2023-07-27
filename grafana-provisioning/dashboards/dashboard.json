@@ -20,14 +20,14 @@
   "fiscalYearStartMonth": 0,
   "gnetId": 9632,
   "graphTooltip": 0,
-  "id": 5,
+  "id": 3,
   "links": [],
   "liveNow": false,
   "panels": [
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "c390403a-e70e-4d60-8e71-fc17b9c18075"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -41,7 +41,7 @@
             "axisPlacement": "auto",
             "barAlignment": 0,
             "drawStyle": "line",
-            "fillOpacity": 21,
+            "fillOpacity": 0,
             "gradientMode": "none",
             "hideFrom": {
               "legend": false,
@@ -49,8 +49,8 @@
               "viz": false
             },
             "lineInterpolation": "linear",
-            "lineWidth": 2,
-            "pointSize": 1,
+            "lineWidth": 1,
+            "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
             },
@@ -65,7 +65,6 @@
             }
           },
           "mappings": [],
-          "max": 200000000000,
           "min": 0,
           "thresholds": {
             "mode": "absolute",
@@ -82,32 +81,7 @@
           },
           "unit": "decbytes"
         },
-        "overrides": [
-          {
-            "__systemRef": "hideSeriesFrom",
-            "matcher": {
-              "id": "byNames",
-              "options": {
-                "mode": "exclude",
-                "names": [
-                  "Free Space (GB)"
-                ],
-                "prefix": "All except:",
-                "readOnly": true
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": true
-                }
-              }
-            ]
-          }
-        ]
+        "overrides": []
       },
       "gridPos": {
         "h": 8,
@@ -115,7 +89,7 @@
         "x": 0,
         "y": 0
       },
-      "id": 13,
+      "id": 11,
       "options": {
         "legend": {
           "calcs": [],
@@ -132,11 +106,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "c390403a-e70e-4d60-8e71-fc17b9c18075"
+            "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
           "expr": "nextcloud_free_space_bytes",
-          "legendFormat": "Free Space (GB)",
+          "instant": false,
           "range": true,
           "refId": "A"
         }
@@ -147,7 +121,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "c390403a-e70e-4d60-8e71-fc17b9c18075"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -189,7 +163,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 6,
+        "h": 8,
         "w": 12,
         "x": 12,
         "y": 0
@@ -209,12 +183,12 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "9.5.2",
+      "pluginVersion": "10.0.0",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "c390403a-e70e-4d60-8e71-fc17b9c18075"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "avg(nextcloud_up)",
           "format": "time_series",
@@ -233,94 +207,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "c390403a-e70e-4d60-8e71-fc17b9c18075"
-      },
-      "fill": 1,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 9,
-        "w": 12,
-        "x": 12,
-        "y": 6
-      },
-      "hiddenSeries": false,
-      "id": 6,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null",
-      "options": {
-        "alertThreshold": true
-      },
-      "percentage": false,
-      "pluginVersion": "9.5.2",
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "c390403a-e70e-4d60-8e71-fc17b9c18075"
-          },
-          "expr": "nextcloud_files_total",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "Files Total",
-          "refId": "A"
-        }
-      ],
-      "thresholds": [],
-      "timeRegions": [],
-      "title": "Files Count",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "mode": "time",
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "short",
-          "logBase": 1,
-          "show": true
-        },
-        {
-          "format": "short",
-          "logBase": 1,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": {
-        "type": "prometheus",
-        "uid": "c390403a-e70e-4d60-8e71-fc17b9c18075"
+        "uid": "PBFA97CFB590B2093"
       },
       "fill": 1,
       "fillGradient": 0,
@@ -350,7 +237,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "9.5.2",
+      "pluginVersion": "10.0.0",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -362,7 +249,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "c390403a-e70e-4d60-8e71-fc17b9c18075"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "sum(nextcloud_shares_federated_total)",
           "format": "time_series",
@@ -374,7 +261,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "c390403a-e70e-4d60-8e71-fc17b9c18075"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "sum(nextcloud_shares_total)",
           "format": "time_series",
@@ -420,18 +307,18 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "c390403a-e70e-4d60-8e71-fc17b9c18075"
+        "uid": "PBFA97CFB590B2093"
       },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
-        "h": 11,
+        "h": 9,
         "w": 12,
         "x": 12,
-        "y": 15
+        "y": 8
       },
       "hiddenSeries": false,
-      "id": 12,
+      "id": 6,
       "legend": {
         "avg": false,
         "current": false,
@@ -449,7 +336,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "9.5.2",
+      "pluginVersion": "10.0.0",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -461,18 +348,18 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "c390403a-e70e-4d60-8e71-fc17b9c18075"
+            "uid": "PBFA97CFB590B2093"
           },
-          "expr": "nextcloud_scrape_errors_total",
+          "expr": "nextcloud_files_total",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "Scrape Errors Total",
+          "legendFormat": "Files Total",
           "refId": "A"
         }
       ],
       "thresholds": [],
       "timeRegions": [],
-      "title": "Scrape Errors",
+      "title": "Files Count",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -488,7 +375,6 @@
         {
           "format": "short",
           "logBase": 1,
-          "min": "0",
           "show": true
         },
         {
@@ -508,13 +394,13 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "c390403a-e70e-4d60-8e71-fc17b9c18075"
+        "uid": "PBFA97CFB590B2093"
       },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
-        "h": 9,
-        "w": 12,
+        "h": 11,
+        "w": 24,
         "x": 0,
         "y": 17
       },
@@ -537,7 +423,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "9.5.2",
+      "pluginVersion": "10.0.0",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -549,7 +435,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "c390403a-e70e-4d60-8e71-fc17b9c18075"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "nextcloud_users_total",
           "format": "time_series",
@@ -560,7 +446,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "c390403a-e70e-4d60-8e71-fc17b9c18075"
+            "uid": "PBFA97CFB590B2093"
           },
           "expr": "nextcloud_active_users_total",
           "format": "time_series",
@@ -642,6 +528,6 @@
   "timezone": "",
   "title": "Nextcloud",
   "uid": "Hcp20_8mz",
-  "version": 6,
+  "version": 3,
   "weekStart": ""
 }

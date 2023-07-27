@@ -7,7 +7,7 @@ services:
     env_file:
       - ./nextcloud.env
     volumes:
-      - ./nextcloud:/var/www/html
+      - ./data/nextcloud:/var/www/html
     depends_on:
       - mariadb
 
@@ -17,7 +17,7 @@ services:
     env_file:
       - ./db.env
     volumes:
-      - ./mariadb:/var/lib/mysql
+      - ./data/mariadb:/var/lib/mysql
 
   nginx:
     image: nginx
@@ -60,14 +60,6 @@ services:
       - 9205:9205
     depends_on:
       - nextcloud
-
-  clamav:
-    image: clamav/clamav
-    restart: always
-    depends_on:
-      - nextcloud
-    ports:
-      - 3500:3500
 
 volumes:
   grafana_data:
